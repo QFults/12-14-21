@@ -15,4 +15,18 @@ router.post('/users', (req, res) => {
   })
 })
 
+router.put('/users/:id', (req, res) => {
+  db.query('UPDATE users SET ? WHERE ?', [req.body, { id: req.params.id }], err => {
+    if (err) { console.log(err) }
+    res.sendStatus(200)
+  })
+})
+
+router.delete('/users/:id', (req, res) => {
+  db.query('DELETE FROM users WHERE ?', { id: req.params.id }, err => {
+    if (err) { console.log(err) }
+    res.sendStatus(200)
+  })
+})
+
 module.exports = router
